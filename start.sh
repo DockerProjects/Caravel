@@ -16,12 +16,14 @@ else
 fi
 
 
-if [ `./init_check.py` = 1 ];
+if [ `./init_check.py` = "1" ];
 then
+  echo "start init db"
   fabmanager create-admin --app caravel --username $USERNAME --firstname $FIRSTNAME --lastname $LASTNAME --email $EMAIL --password $PASSWORD
   caravel db upgrade
   caravel init
   caravel runserver
 else
+  echo "db was inited"
   caravel runserver
 fi
